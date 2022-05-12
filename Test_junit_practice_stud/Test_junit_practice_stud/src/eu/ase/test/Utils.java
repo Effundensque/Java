@@ -161,4 +161,46 @@ public class Utils {
 		this.listObjects=filteredJuices;
 		return filteredJuices;
 	}
+	
+	// Wtf is this? 
+	public float calculateSumMultiThreading()
+	{
+		int NTHREADS = 2;
+		float sum=0L;
+		//long startTime=0L;
+		int startIdx = 0, stopIdx = 0;
+		long[] vectSum = new long[NTHREADS];
+//		startTime=System.currentTimeMillis();
+		Thread[] vectThreads=new Thread[NTHREADS];
+		this.threadsArrayWorkerTasks=new MyRunnable[NTHREADS];
+		int dimVect = 80_000_000;
+		for (int it = 0; it < NTHREADS; it++) {
+			startIdx = it * (dimVect / NTHREADS);
+			stopIdx = (it + 1) * (dimVect / NTHREADS);
+			vectSum[it] = 0L;
+			this.threadsArrayWorkerTasks[it] = new MyRunnable(vector, startIdx, stopIdx);
+			vectThreads[it] = new Thread(this.threadsArrayWorkerTasks[it]);
+		}
+		for (int it = 0; it < NTHREADS; it++) {
+			vectThreads[it].start();
+		}
+
+		for (int it = 0; it < NTHREADS; it++) {
+			try {
+				// inter-thread synchronization
+				// the calling thread goes into a waiting state and
+				// it remains in a waiting state until the referenced thread terminates
+				vectThreads[it].join();
+			} catch (InterruptedException ie) {
+				// Thrown when a thread is waiting, sleeping, or otherwise occupied,
+				// and the thread is interrupted, either before or during the activity
+				ie.printStackTrace();
+			}
+		}
+		for (int it = 0; it < NTHREADS; it++) {
+			this.threadsArrayWorkerTasks[it].run();
+			sum += this.threadsArrayWorkerTasks[it].getSumMl();
+		}
+		return sum;
+	}
 }

@@ -19,27 +19,31 @@ package eu.ase.test;
 public class MyRunnable implements Runnable {
 
 	private Juice[] vector;
-	private float sumML;
+	private float sumMl;
 	private int startPos;
 	private int endPos;
 	
 	public MyRunnable(Object[] data,int startPos, int endPos)
 	{
-		this.vector=(Juice[])data;
+		this.vector=new Juice[data.length];
+		for (int i=0; i<data.length; i++)
+		{
+			vector[i]=(Juice)data[i];
+		}
 		this.startPos=startPos;
 		this.endPos=endPos;
 	}
 	
-	public float getSumML() {
-		return sumML;
+	public float getSumMl() {
+		return sumMl;
 	}
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		sumML = 0L;
+		sumMl = 0.0f;
 		for(int i=startPos; i<endPos; i++) {
-			sumML += vector[i].getMl();
+			sumMl += vector[i].getMl();
 		}
 		
 		
