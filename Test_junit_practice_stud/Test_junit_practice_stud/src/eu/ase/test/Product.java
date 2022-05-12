@@ -2,6 +2,7 @@ package eu.ase.test;
 
 import java.io.Serializable;
 import java.util.Date;
+//import java.io.IOException;
 
 /*
  * Create the abstract class Product which implements Cloneable, AutoCloseable and java.io.Serializable interfaces.
@@ -30,7 +31,83 @@ import java.util.Date;
  * Declare public abstract method getAbstractProductInfo which has no parameter and returns -> String.
  */
 
-public abstract class Product /* implements Cloneable, AutoCloseable, Serializable */{
+public abstract class Product implements Cloneable, AutoCloseable, Serializable {
+	private Date expDate;
+	private int id;
+	private String title;
+	private static final long serialVersionUID = -806571991288912011L;
+	private static int productsNo;
+	public abstract String getAbstractProductInfo();
+
+	public Date getExpDate() {
+		return expDate;
+	}
+	public void setExpDate(Date expDate) {
+		this.expDate = expDate;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id)throws Exception {
+		if (id < 0)
+		{
+			throw new Exception("You can't put an id that is lower than 0.");
+		}
+		else
+		{
+			this.id = id;
+		}
+		
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public static int getProductsNo() {
+		return productsNo;
+	}
+	@Override
+	public void close() throws Exception {
+		// TODO Auto-generated method stub
+		productsNo--;
+		
+	}
+	
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		productsNo++;
+		return super.clone();
+	}
+
+	public Product()
+	{
+		productsNo++;
+	}
+	public Product(int id, Date expDate, String title) throws Exception
+	{
+		productsNo++;
+		if (id<0)
+		{
+			throw new Exception("You can't put an id that is lower than 0.");
+		}
+		else
+		{
+			this.id=id;
+		}
+		this.expDate=expDate;
+		this.title=title;
+	}
 	
 }
 

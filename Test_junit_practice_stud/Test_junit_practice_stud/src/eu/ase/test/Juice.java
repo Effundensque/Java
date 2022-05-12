@@ -1,5 +1,6 @@
 package eu.ase.test;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /*
@@ -28,7 +29,80 @@ import java.util.Date;
  * Override toString() -> String method in terms of returning the String concatenation of the fields content
  */
 
-public class Juice extends Product /* implements Cloneable, Comparable<Juice> */ {
+public class Juice extends Product implements Cloneable, Comparable<Juice>, Serializable {
+
 	
+	private float ml;
+	private static final long serialVersionUID = -806571991288912011L;
+	
+	public Juice(int id, Date expDate, String title, float ml) throws Exception
+	{
+		super(id,expDate,title);
+		if (ml<0.0f)
+		{
+			throw new Exception("Ml can't be negative");
+		}
+		else
+		{
+			this.ml=ml;
+		}
+	}
+	
+	public float getMl() {
+		return ml;
+	}
+	
+
+	public void setMl(float ml)throws Exception {
+		if (ml<0.0f)
+		{
+			throw new Exception("Ml can't be negative");
+		}
+		else
+		{
+			this.ml = ml;
+		}
+		
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		Juice ceva=(Juice)obj;
+		if (ceva.ml!=this.ml)
+			return false;
+		if (this.getExpDate()!=ceva.getExpDate())
+			return false;
+		if (this.getId()!=ceva.getId())
+			return false;
+		if (this.getTitle()!=ceva.getTitle())
+			return false;
+		return true;
+			
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
+
+	@Override
+	public int compareTo(Juice o) {
+		// TODO Auto-generated method stub
+		if (this.ml>o.ml)
+		return 1;
+		return 0;
+	}
+
+	@Override
+	public String getAbstractProductInfo() {
+		// TODO Auto-generated method stub
+		String deReturnat="";
+		deReturnat +=this.getId();
+		deReturnat+=this.getTitle();
+		return deReturnat;
+	}
 }
 	

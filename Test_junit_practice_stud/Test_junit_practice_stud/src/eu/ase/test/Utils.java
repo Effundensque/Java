@@ -1,15 +1,22 @@
 package eu.ase.test;
 
+//import java.io.BufferedInputStream;
+//import java.io.BufferedOutputStream;
+//import java.io.DataInputStream;
+//import java.io.DataOutputStream;
 import java.io.FileInputStream;
+//import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
+//import java.io.Serializable;
+//import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+//import java.util.concurrent.ExecutorService;
+//import java.util.concurrent.Executors;
+//import java.util.concurrent.TimeUnit;
+//import java.util.stream.Collectors;
 
 /*
  * Create the class Utils.
@@ -61,5 +68,85 @@ import java.util.stream.Collectors;
 
 
 public class Utils {
-
+	
+	private Object[] vector;
+	private List<Juice> listObjects;
+	private MyRunnable[] threadsArrayWorkerTasks;
+	
+	
+	
+	public Object[] getVector() {
+		return vector;
+	}
+	public List<Juice> getListObjects() {
+		return listObjects;
+	}
+	public void setListObjects(List<Juice> listObjects) {
+		this.listObjects = listObjects;
+	}
+	public MyRunnable[] getThreadsArrayWorkerTasks() {
+		return threadsArrayWorkerTasks;
+	}
+	public void setThreadsArrayWorkerTasks(MyRunnable[] threadsArrayWorkerTasks) {
+		this.threadsArrayWorkerTasks = threadsArrayWorkerTasks;
+	}
+	
+	public void setVector(Object[] data) throws Exception
+	{
+		vector = new Object[data.length];
+		for (int i=0; i<data.length; i++)
+		{
+			vector[i]=(Juice)data[i];
+		}
+		
+		//vector=data.clone();
+	}
+	
+	public void displayVector()
+	{
+		for (int i=0; i<vector.length;i++)
+		{
+			System.out.println(vector[i]);
+		}
+	}
+	public void writeBinary(String file)
+	{
+		try {
+			
+			ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(file));
+			int dim=vector.length;
+			oos.writeInt(dim);
+			for (int i = 0; i<dim; i++)
+			{
+				oos.writeObject((Juice)vector[i]);
+			}
+			oos.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void readBinary(String file)
+	{
+		
+		try {
+			ObjectInputStream ois= new ObjectInputStream(new FileInputStream(file));
+			
+			int dim=ois.readInt();
+			vector=new Object[dim];
+			for (int i=0; i<dim; i++)
+			{
+				vector[i]=(Juice)ois.readObject();
+			}
+			ois.close();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

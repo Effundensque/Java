@@ -16,6 +16,33 @@ package eu.ase.test;
  *  between "startPos" and "endPos" positions and provide public method getSumMl() which is returning the float "sumMl"
  */
 
-public class MyRunnable /* implements Runnable */ {
+public class MyRunnable implements Runnable {
+
+	private Juice[] vector;
+	private float sumML;
+	private int startPos;
+	private int endPos;
+	
+	public MyRunnable(Object[] data,int startPos, int endPos)
+	{
+		this.vector=(Juice[])data;
+		this.startPos=startPos;
+		this.endPos=endPos;
+	}
+	
+	public float getSumML() {
+		return sumML;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		sumML = 0L;
+		for(int i=startPos; i<endPos; i++) {
+			sumML += vector[i].getMl();
+		}
+		
+		
+	}
 
 }
