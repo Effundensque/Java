@@ -48,6 +48,25 @@ public class Juice extends Product implements Cloneable, Comparable<Juice>, Seri
 		}
 	}
 	
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		
+		float ml=this.ml;
+		Date expDate = new Date(this.getExpDate().getTime());
+		int id=this.getId();
+		String title=new String(this.getTitle());
+		
+		Juice juiceCopy;
+		try {
+			juiceCopy = new Juice(id,expDate,title,ml);
+			return juiceCopy;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public float getMl() {
 		return ml;
 	}
@@ -71,11 +90,11 @@ public class Juice extends Product implements Cloneable, Comparable<Juice>, Seri
 		Juice ceva=(Juice)obj;
 		if (ceva.ml!=this.ml)
 			return false;
-		if (this.getExpDate()!=ceva.getExpDate())
+		if (!this.getExpDate().toString().equals(ceva.getExpDate().toString()))
 			return false;
 		if (this.getId()!=ceva.getId())
 			return false;
-		if (this.getTitle()!=ceva.getTitle())
+		if (!this.getTitle().equals(ceva.getTitle()))
 			return false;
 		return true;
 			

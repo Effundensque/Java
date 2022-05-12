@@ -5,14 +5,17 @@ package eu.ase.test;
 //import java.io.DataInputStream;
 //import java.io.DataOutputStream;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 //import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Arrays;
 //import java.io.Serializable;
 //import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 //import java.util.concurrent.ExecutorService;
 //import java.util.concurrent.Executors;
 //import java.util.concurrent.TimeUnit;
@@ -93,13 +96,12 @@ public class Utils {
 	
 	public void setVector(Object[] data) throws Exception
 	{
-		vector = new Object[data.length];
+		vector = new Juice[data.length];
 		for (int i=0; i<data.length; i++)
 		{
-			vector[i]=(Juice)data[i];
+			if (data[i]!=null)
+				vector[i]=((Juice)data[i]).clone();
 		}
-		
-		//vector=data.clone();
 	}
 	
 	public void displayVector()
@@ -112,35 +114,37 @@ public class Utils {
 	public void writeBinary(String file)
 	{
 		try {
-			
-			ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(file));
-			int dim=vector.length;
-			oos.writeInt(dim);
-			for (int i = 0; i<dim; i++)
+			ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(file));
+			oos.writeInt(vector.length);
+			for (int i=0; i<vector.length; i++)
 			{
 				oos.writeObject((Juice)vector[i]);
 			}
 			oos.close();
-			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public void readBinary(String file)
 	{
-		
 		try {
-			ObjectInputStream ois= new ObjectInputStream(new FileInputStream(file));
-			
-			int dim=ois.readInt();
-			vector=new Object[dim];
-			for (int i=0; i<dim; i++)
+			ObjectInputStream ois = new ObjectInputStream (new FileInputStream (file));
+			int a=ois.readInt();
+			vector= new Juice[a];
+			for (int i=0; i<a; i++)
 			{
 				vector[i]=(Juice)ois.readObject();
 			}
 			ois.close();
 			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,5 +152,13 @@ public class Utils {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public List<Juice> sortPlusFilterWithLamdaPredicate()
+	{
+		List<Juice> juices= Arrays.asList((Juice[])vector);
+		List<Juice> filteredJuices=juices.stream().filter(id-> id.getId()>10).collect(Collectors.toList());
+		this.listObjects=filteredJuices;
+		return filteredJuices;
 	}
 }
