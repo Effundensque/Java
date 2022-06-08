@@ -5,7 +5,7 @@ import java.util.Set;
 
 /**
  * Does Set allow at most one null element?
- *	*1. Yes
+ *	1. Yes - giur / flav
  *	2. No
  */
 public class Q4 {

@@ -4,8 +4,8 @@ package multithreading.common;
  * What would be the output of the following code?
  * 1. msg1 msg2
  * 2. msg1 thread
- * 3. msg1 thread msg2  
- * *4. msg1 msg2 thread 
+ * 3. msg1 thread msg2  - flav
+ * 4. msg1 msg2 thread  - giur
  *
  */
 

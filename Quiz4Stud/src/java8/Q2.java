@@ -15,5 +15,5 @@ class Q2 {
  *	1. el -> {return el > 30;}
  *	2. (int el) -> {return el > 30;}
  *	3. el -> el > 30
- *	*4. all are valid
+ *	4. all are valid - giur / flav
  */

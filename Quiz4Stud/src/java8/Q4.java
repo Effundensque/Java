@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * If refDate.getDayOfWeek() prints "FRIDAY", what would be the output of newDate.getDayOfWeek()?
  * 
  * 1. SUNDAY
- * *2. MONDAY
+ * 2. MONDAY giur / flav
  * 3. TUESDAY
  * 4. SATURDAY
  */

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * A class can implement many interfaces but extend only one class.
- * *1. True
+ * 1. True
  * 2. False
  *
  */

@@ -3,9 +3,9 @@ package poly;
 /**
  * What will be the output of the following code:
  * 1. Nothing
- * 2. Compiler error
+ * 2. Compiler error - flav
  * 3. 4 4
- * *4. 4
+ * 4. 4 - giur
  *
  */
 public class Q2 {

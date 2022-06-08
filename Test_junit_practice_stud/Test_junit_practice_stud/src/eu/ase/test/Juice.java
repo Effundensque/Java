@@ -114,6 +114,19 @@ public class Juice extends Product implements Cloneable, Comparable<Juice>, Seri
 		return 1;
 		return 0;
 	}
+	
+	//public default String transformArray(Integer[] values) {
+	//	String arrayChar;
+	//	arrayChar+=values[0].toString();
+	//	for (int i=1; i<values.length; i++)
+	//	{
+	//		arrayChar+=", ";
+	//		arrayChar+=values[i].toString();
+	//	}
+	//		
+	//}
+	
+	
 
 	@Override
 	public String getAbstractProductInfo() {

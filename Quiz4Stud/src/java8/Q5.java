@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 /**
  * What will be the output of the following:
- * *1. [2, 1, 4]
- * 2. [2, 2, 1, 4, 2, 2]
+ * 1. [2, 1, 4] - giur
+ * 2. [2, 2, 1, 4, 2, 2] - flav
  * 3. [2, 2, 3, 4, 2, 2]
  * 4. [2, 3, 4]
  */
@@ -16,7 +16,8 @@ class Q5 {
 	public static void main(String[] args) {
 		
 		
-		List<Integer> ids = Arrays.asList(1, 3, 2, 5, 3, 1);
+		List<Integer> ids = Arrays.asList(1, 3, 2, 5, 3, 1); // 2 2 1 4 2 2 - 2 1 4
+		//2 2 1 4 2 2
 		
 		List<Integer> newIds = ids
 				.stream()

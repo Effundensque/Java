@@ -2,10 +2,10 @@ package poly;
 
 /**
  * What will be the output of the following code:
- * 1. 25
+ * 1. 25 - flav
  * 2. Compilation error
  * 3. 15
- * *4. 26
+ * 4. 26 - giur
  */
 interface ITest {
 	public static final int var = 5;
@@ -21,7 +21,7 @@ public class Q3 implements ITest {
 
 	@Override
 	public void doIt(int n) {
-		n += var + ++n;
+		n += var + ++n;//10 + 5 + 11 26
 		System.out.println("n = " + n);
 	}
 }

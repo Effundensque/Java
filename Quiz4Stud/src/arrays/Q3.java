@@ -4,7 +4,7 @@ package arrays;
  *  What will be the output of the following code:
  *
  *	1. 1 2 3 4 5
- *	*2. 5 2 3 4 1
+ *	2. 5 2 3 4 1 - giur / flav
  *	3. 5 2 3 4 5
  *  4. 1 2 3 4 1
  */

@@ -5,7 +5,7 @@ package poly;
  *	1. extend
  *	2. super
  *	3. this
- *	*4. extends
+ *	4. extends
  */
 public class Q5 extends Object{
 

@@ -7,9 +7,9 @@ import java.io.ObjectInputStream;
 
 /**
  * What error is thrown if the file stream is closed?
- * 1. EOFException
- * 2. NullPointerException
- * *3. IOException
+ * 1. EOFException - Flav
+ * 2. NullPointerException 
+ * 3. IOException - giur
  * 4. ClassCastException
  */
 public class Q8 {

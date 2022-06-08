@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * What will be the output of the following code:
  * 1. {null=Test}
- * *2. {null=Fest}
+ * 2. {null=Fest} - giur / flav 
  * 3. {null=Test}
 	  {null=Fest} 
  * 4. error at line 	 m.put(null,"Fest");

@@ -2,11 +2,11 @@ package clone;
 
 /**
  * What will be the output of the following code:
- * 1. Test1: 1 2 3
+ * 1. Test1: 1 2 3 -flav
 		Test2: 1 2 3
  * 2. Test1: 4 2 3
 		Test2: 1 2 3
- * *3. Test1: 4 2 3
+ * 3. Test1: 4 2 3 -giur
 	  Test2: 4 2 3
  * 4. Test1: 1 2 3
 		Test2: 4 2 3

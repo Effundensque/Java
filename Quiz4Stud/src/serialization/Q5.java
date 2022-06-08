@@ -7,7 +7,7 @@ package serialization;
  * 1. class Product extends Serializable
  * 2. class Product extend Serializable
  * 3. class Product implement Serializable
- * *4. class Product implements Serializable
+ * 4. class Product implements Serializable - giur / flav
  */
 class Q5 {
 
